@@ -1,0 +1,148 @@
+CREATE DATABASE my_db;
+
+DROP DATABASE my_db;
+
+CREATE TABLE employees (
+                           id INT PRIMARY KEY,
+                           name VARCHAR(50),
+                           age INT,
+                           department VARCHAR(50)
+);
+
+DROP TABLE employees;
+
+ALTER TABLE employees
+ADD Email varchar(255);
+
+ALTER TABLE employees
+DROP COLUMN Email;
+
+ALTER TABLE employees
+RENAME COLUMN age to age2;
+
+-- The following constraints are commonly used in SQL:
+--
+-- NOT NULL - Ensures that a column cannot have a NULL value
+-- UNIQUE - Ensures that all values in a column are different
+-- PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+-- FOREIGN KEY - Prevents actions that would destroy links between tables                                                                                                                        FOREIGN KEY - Prevents actions that would destroy links between tables
+-- CHECK - Ensures that the values in a column satisfies a specific condition
+-- DEFAULT - Sets a default value for a column if no value is specified
+-- CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+SELECT id, age
+FROM employees;
+
+SELECT *
+FROM employees;
+
+SELECT distinct age
+FROM employees;
+
+SELECT *
+FROM employees
+WHERE name = 'Javid';
+
+SELECT *
+FROM employees
+WHERE name = 'Javid' AND age > 25;
+
+SELECT *
+FROM employees
+WHERE name = 'Javid' OR age > 25;
+
+SELECT *
+FROM employees
+WHERE name = 'Javid' AND (age = 25 OR age = 23);
+
+SELECT *
+FROM employees
+ORDER BY age;
+
+SELECT *
+FROM employees
+ORDER BY age DESC; /*ASC - default*/
+
+SELECT *
+FROM employees
+ORDER BY id, age;
+
+SELECT *
+FROM employees
+ORDER BY id ASC , age DESC;
+
+INSERT INTO employees (id, age, name)
+VALUES (1, 25, 'Javid');
+
+INSERT INTO employees (id, age, name)
+VALUES (2, 25, 'Hatəm'),
+       (3, 24, 'Javad'),
+       (4, 26, 'Azer');
+
+SELECT *
+FROM employees
+WHERE email IS NULL;
+
+SELECT *
+FROM employees
+WHERE email IS NOT NULL;
+
+UPDATE employees
+SET email = 'cavidrazzagzade@gmail.com', name = 'Javid'
+WHERE id = 1;
+
+DELETE FROM employees
+WHERE id = 4;
+
+SELECT *
+FROM employees
+WHERE id = 3
+LIMIT 1;
+
+SELECT *
+FROM employees
+WHERE id = 3
+FETCH FIRST 1 ROWS ONLY;
+
+SELECT min(age) AS SmallestPrice
+FROM employees;
+
+SELECT max(age) AS SmallestPrice
+FROM employees;
+
+SELECT avg(age) AS SmallestPrice
+FROM employees;
+
+SELECT count(age) AS SmallestPrice
+FROM employees;
+
+SELECT sum(age) AS SmallestPrice
+FROM employees;
+
+SELECT * FROM employees
+WHERE employees.name LIKE '%a%';
+
+SELECT * FROM employees
+WHERE employees.name LIKE '_a%';
+
+-- % -  Represents zero or more characters      bl% finds bl, black, blue, and blob
+-- _ -  Represents a single character           h_t finds hot, hat, and hit
+
+SELECT * FROM employees
+WHERE name IN ('Javid', 'Javad', 'Murad');
+
+SELECT * FROM employees
+WHERE name NOT IN ('Javid', 'Javad', 'Murad');
+
+SELECT * FROM employees
+WHERE age BETWEEN 10 AND 25;
+
+SELECT * FROM employees
+WHERE age NOT BETWEEN 10 AND 25;
+
+SELECT * FROM employees
+WHERE age BETWEEN 10 AND 24
+AND id NOT IN (1,2,3);
+
+SELECT age AS yas, name AS ad
+FROM employees;
